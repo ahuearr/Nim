@@ -4,10 +4,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Partidas" >
+    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/txt_nombre_rival" />
 	<EditText android:id="@+id/nombre_rival"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content" />
-    <Button android:id="@+id/boton_grabar_configuracion"
+    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/txt_fila1" />
+	<EditText android:id="@+id/fila1"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" />
+    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/txt_fila2" />
+	<EditText android:id="@+id/fila2"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" />
+    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/txt_fila3" />
+	<EditText android:id="@+id/fila3"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" />
+    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/txt_modo_miseria" />
+    <CheckBox android:id="@+id/modo_miseria"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"/>
+	<Button android:id="@+id/boton_grabar_configuracion"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:text="@string/bt_grabar_configuracion" />

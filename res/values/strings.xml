@@ -6,6 +6,13 @@
     <string name="hello_world">Hello world!</string>
 
     <string name="bt_nueva_partida">Nueva Partida</string>
+    
+    <string name="txt_nombre_rival">Nombre oponente:</string>
+    <string name="txt_fila1">Fila 1:</string>
+    <string name="txt_fila2">Fila 2:</string>
+    <string name="txt_fila3">Fila 3:</string>
+    <string name="txt_modo_miseria">Modo miseria:</string>
+    
     <string name="bt_grabar_configuracion">Grabar configuracion</string>
     
 </resources>

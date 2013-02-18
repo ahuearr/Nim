@@ -15,8 +15,8 @@ import android.widget.Button;
 
 public class Partidas extends ListActivity implements OnClickListener{
 
-	private final List<String> partidas = new ArrayList<String>();
-	private ArrayAdapter<String> adapter;
+	private final List<TipoPartida> partidas = new ArrayList<TipoPartida>();
+	private TipoPartidaAdapter adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class Partidas extends ListActivity implements OnClickListener{
 		Button btNuevaPartida = (Button) findViewById(R.id.boton_nueva_partida);
 		btNuevaPartida.setOnClickListener(this);
 
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, partidas);
+		adapter = new TipoPartidaAdapter(this, R.layout.row_partida, partidas);
 		setListAdapter(adapter);
 	}
 
@@ -57,7 +57,7 @@ public class Partidas extends ListActivity implements OnClickListener{
 		switch(resultCode)
 		{
 		case RESULT_OK:
-			partidas.add(data.getStringExtra("Rival"));
+			partidas.add((TipoPartida) data.getSerializableExtra("TipoPartida"));
 			adapter.notifyDataSetChanged();
 		}
 	}
