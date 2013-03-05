@@ -1,4 +1,4 @@
-package com.gusycorp.nim;
+package com.gusycorp.nim.model;
 
 import java.io.Serializable;
 

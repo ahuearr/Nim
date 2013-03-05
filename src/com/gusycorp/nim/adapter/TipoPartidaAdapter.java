@@ -1,6 +1,12 @@
-package com.gusycorp.nim;
+package com.gusycorp.nim.adapter;
 
 import java.util.List;
+
+import com.gusycorp.nim.R;
+import com.gusycorp.nim.R.id;
+import com.gusycorp.nim.R.layout;
+import com.gusycorp.nim.activity.PartidasActivity;
+import com.gusycorp.nim.model.TipoPartida;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +18,7 @@ import android.widget.TextView;
 
 public class TipoPartidaAdapter extends ArrayAdapter<TipoPartida> {
 
-	public TipoPartidaAdapter(final Partidas context, final int resource,
+	public TipoPartidaAdapter(final PartidasActivity context, final int resource,
 			final List<TipoPartida> tipoPartidas) {
 		super(context, resource, tipoPartidas);
 	}

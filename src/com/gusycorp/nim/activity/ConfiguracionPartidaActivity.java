@@ -1,4 +1,9 @@
-package com.gusycorp.nim;
+package com.gusycorp.nim.activity;
+
+import com.gusycorp.nim.R;
+import com.gusycorp.nim.R.id;
+import com.gusycorp.nim.R.layout;
+import com.gusycorp.nim.model.TipoPartida;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-public class ConfiguracionPartida extends Activity implements OnClickListener {
+public class ConfiguracionPartidaActivity extends Activity implements OnClickListener {
 
 	public static final String TIPO_PARTIDA = "TipoPartida";
 

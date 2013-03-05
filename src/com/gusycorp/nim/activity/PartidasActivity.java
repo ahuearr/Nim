@@ -1,7 +1,14 @@
-package com.gusycorp.nim;
+package com.gusycorp.nim.activity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.gusycorp.nim.R;
+import com.gusycorp.nim.R.id;
+import com.gusycorp.nim.R.layout;
+import com.gusycorp.nim.R.menu;
+import com.gusycorp.nim.adapter.TipoPartidaAdapter;
+import com.gusycorp.nim.model.TipoPartida;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -11,9 +18,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Partidas extends ListActivity implements OnClickListener {
+public class PartidasActivity extends ListActivity implements OnClickListener {
 
-	private final List<TipoPartida> partidas = new ArrayList<TipoPartida>();
 	private TipoPartidaAdapter adapter;
 
 	@Override
@@ -24,7 +30,9 @@ public class Partidas extends ListActivity implements OnClickListener {
 		final Button nuevaPartida = (Button) findViewById(R.id.boton_nueva_partida);
 		nuevaPartida.setOnClickListener(this);
 
-		adapter = new TipoPartidaAdapter(this, R.layout.row_partida, partidas);
+		Nim nim = (Nim) getApplication();
+
+		adapter = new TipoPartidaAdapter(this, R.layout.row_partida, nim.getTipoPartida());
 		setListAdapter(adapter);
 	}
 
@@ -39,7 +47,7 @@ public class Partidas extends ListActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.boton_nueva_partida:
 			startActivityForResult(
-					new Intent(this, ConfiguracionPartida.class), 1);
+					new Intent(this, ConfiguracionPartidaActivity.class), 1);
 		}
 	}
 
@@ -48,10 +56,13 @@ public class Partidas extends ListActivity implements OnClickListener {
 			final int resultCode, final Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
+		Nim nim = (Nim) getApplication();
+		
+
 		switch (resultCode) {
 		case RESULT_OK:
-			partidas.add((TipoPartida) data
-					.getSerializableExtra(ConfiguracionPartida.TIPO_PARTIDA));
+			nim.getTipoPartida().add((TipoPartida) data
+					.getSerializableExtra(ConfiguracionPartidaActivity.TIPO_PARTIDA));
 			adapter.notifyDataSetChanged();
 		}
 	}
