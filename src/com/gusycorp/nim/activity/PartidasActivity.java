@@ -14,10 +14,12 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class PartidasActivity extends ListActivity implements OnClickListener {
 
@@ -39,8 +41,8 @@ public class PartidasActivity extends ListActivity implements OnClickListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
-		MenuItem nuevaPartida = menu.add(0, 1, 0, getString(R.string.bt_nueva_partida));
-		MenuItem configuracionPartida = menu.add(0, 2, 1, getString(R.string.bt_grabar_configuracion));
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.partidas, menu);
 		return true;
 	}
 
@@ -67,5 +69,20 @@ public class PartidasActivity extends ListActivity implements OnClickListener {
 					.getSerializableExtra(ConfiguracionPartidaActivity.TIPO_PARTIDA));
 			adapter.notifyDataSetChanged();
 		}
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item) {
+		switch(item.getItemId())
+		{
+		case R.id.nueva_partida:
+			Toast.makeText(this, "Pulsado nueva partida", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.configuracion:
+			Toast.makeText(this, "Pulsado configuracion", Toast.LENGTH_SHORT).show();
+			break;
+		}
+		return true;
+		
 	}
 }
