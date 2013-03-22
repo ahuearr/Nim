@@ -1,18 +1,5 @@
 package com.gusycorp.nim.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.gusycorp.nim.R;
-import com.gusycorp.nim.R.id;
-import com.gusycorp.nim.R.layout;
-import com.gusycorp.nim.R.menu;
-import com.gusycorp.nim.adapter.TipoPartidaAdapter;
-import com.gusycorp.nim.model.TipoPartida;
-import com.parse.Parse;
-import com.parse.ParseObject;
-import com.parse.PushService;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,9 +11,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.gusycorp.nim.R;
+import com.gusycorp.nim.adapter.TipoPartidaAdapter;
+import com.gusycorp.nim.model.TipoPartida;
+
 public class PartidasActivity extends ListActivity implements OnClickListener {
 
 	private TipoPartidaAdapter adapter;
+	private final String usernameLogin = "Agustin";
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -38,15 +30,17 @@ public class PartidasActivity extends ListActivity implements OnClickListener {
 
 		Nim nim = (Nim) getApplication();
 
+		nim.setUsernameLogin(usernameLogin);
+
 		adapter = new TipoPartidaAdapter(this, R.layout.row_partida, nim.getTipoPartida());
 		setListAdapter(adapter);
-		
-/*		Parse.initialize(this, "3835wvpH2P4Jqn5dpNkVnowm8yrQ9AG7W9x3icRV", "UJacZAQf1rJut6SyTC8PTvdTv5ogJSJNaRmTP8Mg");
-		
+
+		/*		Parse.initialize(this, "3835wvpH2P4Jqn5dpNkVnowm8yrQ9AG7W9x3icRV", "UJacZAQf1rJut6SyTC8PTvdTv5ogJSJNaRmTP8Mg");
+
 		ParseObject testObject = new ParseObject("TestObject");
 		testObject.put("foo", "bar");
 		testObject.saveInBackground();
-*/
+		 */
 	}
 
 	@Override
@@ -71,7 +65,7 @@ public class PartidasActivity extends ListActivity implements OnClickListener {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		Nim nim = (Nim) getApplication();
-		
+
 
 		switch (resultCode) {
 		case RESULT_OK:
@@ -80,7 +74,7 @@ public class PartidasActivity extends ListActivity implements OnClickListener {
 			adapter.notifyDataSetChanged();
 		}
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch(item.getItemId())
@@ -93,6 +87,6 @@ public class PartidasActivity extends ListActivity implements OnClickListener {
 			break;
 		}
 		return true;
-		
+
 	}
 }

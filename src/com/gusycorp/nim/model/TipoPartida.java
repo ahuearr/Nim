@@ -16,10 +16,11 @@ public class TipoPartida implements Serializable {
 	private String row2;
 	private String row3;
 	private String usernameWinner;
+	private String usernamePlaying;
 
 	public TipoPartida(final String username1, final String username2, final String row1Initial,
 			final String row2Initial, final String row3Initial, final boolean miseryGame, final String row1,
-			final String row2, final String row3, final String usernameWinner) {
+			final String row2, final String row3, final String usernameWinner, final String usernamePlaying) {
 		this.setUsername1(username1);
 		this.setUsername2(username2);
 		this.setRow1Initial(row1Initial);
@@ -30,6 +31,7 @@ public class TipoPartida implements Serializable {
 		this.setRow2(row2);
 		this.setRow3(row3);
 		this.setUsernameWinner(usernameWinner);
+		this.setUsernamePlaying(usernamePlaying);
 	}
 
 	public TipoPartida(final String username2, final String row1Initial,
@@ -119,6 +121,14 @@ public class TipoPartida implements Serializable {
 
 	public void setUsernameWinner(String usernameWinner) {
 		this.usernameWinner = usernameWinner;
+	}
+
+	public String getUsernamePlaying() {
+		return usernamePlaying;
+	}
+
+	public void setUsernamePlaying(String usernamePlaying) {
+		this.usernamePlaying = usernamePlaying;
 	}
 
 }
