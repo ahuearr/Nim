@@ -9,6 +9,9 @@ import com.gusycorp.nim.R.layout;
 import com.gusycorp.nim.R.menu;
 import com.gusycorp.nim.adapter.TipoPartidaAdapter;
 import com.gusycorp.nim.model.TipoPartida;
+import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.PushService;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -37,6 +40,13 @@ public class PartidasActivity extends ListActivity implements OnClickListener {
 
 		adapter = new TipoPartidaAdapter(this, R.layout.row_partida, nim.getTipoPartida());
 		setListAdapter(adapter);
+		
+/*		Parse.initialize(this, "3835wvpH2P4Jqn5dpNkVnowm8yrQ9AG7W9x3icRV", "UJacZAQf1rJut6SyTC8PTvdTv5ogJSJNaRmTP8Mg");
+		
+		ParseObject testObject = new ParseObject("TestObject");
+		testObject.put("foo", "bar");
+		testObject.saveInBackground();
+*/
 	}
 
 	@Override

@@ -33,9 +33,9 @@ public class TipoPartidaAdapter extends ArrayAdapter<TipoPartida> {
 		}
 
 		final TipoPartida tipoPartida = getItem(position);
-		final TextView oponente = (TextView) row
+		final TextView username2 = (TextView) row
 				.findViewById(R.id.nombre_rival);
-		oponente.setText(tipoPartida.getOponent());
+		username2.setText(tipoPartida.getUsername2());
 		final TextView row1 = (TextView) row.findViewById(R.id.row1);
 		row1.setText(tipoPartida.getRow1());
 		final TextView row2 = (TextView) row.findViewById(R.id.row2);
@@ -44,7 +44,7 @@ public class TipoPartidaAdapter extends ArrayAdapter<TipoPartida> {
 		row3.setText(tipoPartida.getRow3());
 		final CheckBox modoMiseria = (CheckBox) row
 				.findViewById(R.id.modo_miseria);
-		modoMiseria.setChecked(tipoPartida.isMisereGame());
+		modoMiseria.setChecked(tipoPartida.isMiseryGame());
 		return row;
 	}
 }
