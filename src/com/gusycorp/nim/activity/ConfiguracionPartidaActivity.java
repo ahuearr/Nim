@@ -1,11 +1,5 @@
 package com.gusycorp.nim.activity;
 
-import com.gusycorp.nim.R;
-import com.gusycorp.nim.R.id;
-import com.gusycorp.nim.R.layout;
-import com.gusycorp.nim.model.Fila;
-import com.gusycorp.nim.model.TipoPartida;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,7 +12,15 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.gusycorp.nim.R;
+import com.gusycorp.nim.model.Fila;
+import com.gusycorp.nim.model.TipoPartida;
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 public class ConfiguracionPartidaActivity extends Activity implements OnClickListener {
+
+	private final String usernameLogin = "Agustin";
 
 	public static final String TIPO_PARTIDA = "TipoPartida";
 	public static final String FILA1 = "Fila1";
@@ -31,6 +33,10 @@ public class ConfiguracionPartidaActivity extends Activity implements OnClickLis
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.configuracion_partida);
+
+		Nim nim = (Nim) getApplication();
+
+		nim.setUsernameLogin(usernameLogin);
 
 		final Button grabarConfiguracion = (Button) findViewById(R.id.boton_grabar_configuracion);
 		grabarConfiguracion.setOnClickListener(this);
@@ -45,7 +51,7 @@ public class ConfiguracionPartidaActivity extends Activity implements OnClickLis
 		fila1.setAdapter(filas);
 		fila2.setAdapter(filas);
 		fila3.setAdapter(filas);
-		
+
 		SharedPreferences preferencias = getSharedPreferences("preferencias", MODE_PRIVATE);
 
 		//Se recuperan los valores de las preferencias y se setean los spinners
@@ -74,8 +80,12 @@ public class ConfiguracionPartidaActivity extends Activity implements OnClickLis
 		final String txtFila3 = fila3.getSelectedItem().toString();
 		final boolean modoMiseria = checkboxModoMiseria.isChecked();
 
-		final TipoPartida tipoPartida = new TipoPartida(rival, txtFila1, txtFila2,
-				txtFila3, modoMiseria);
+		/*Se crea el objeto de la partida
+		 * Se supone que el gameid siempre sera 1
+		 * Se supone que el tipo de usuario es otro rival en el teléfono
+		 */
+		final TipoPartida tipoPartida = new TipoPartida(1, usernameLogin, rival, 2, txtFila1, txtFila2, txtFila3, modoMiseria,
+				txtFila1, txtFila2, txtFila3, "", usernameLogin);
 
 		SharedPreferences.Editor preferencias = getSharedPreferences("preferencias", MODE_PRIVATE).edit();
 
@@ -84,9 +94,15 @@ public class ConfiguracionPartidaActivity extends Activity implements OnClickLis
 		preferencias.putString(FILA3,txtFila3);
 		preferencias.putBoolean(MODO_MISERIA,modoMiseria);
 		preferencias.commit();
-		
+
 		switch (v.getId()) {
 		case R.id.boton_grabar_configuracion:
+			/*Se graba en la base de datos la partida
+			 */
+			Parse.initialize(this, "3835wvpH2P4Jqn5dpNkVnowm8yrQ9AG7W9x3icRV", "UJacZAQf1rJut6SyTC8PTvdTv5ogJSJNaRmTP8Mg");
+			ParseObject partida = tipoPartida.guardarPartida();
+			partida.saveInBackground();
+
 			final Intent intent = new Intent();
 			intent.putExtra(TIPO_PARTIDA, tipoPartida);
 			setResult(RESULT_OK, intent);

@@ -44,7 +44,7 @@ public class TipoPartidaAdapter extends ArrayAdapter<TipoPartida> {
 		row3.setText(tipoPartida.getRow3());
 		final CheckBox modoMiseria = (CheckBox) row
 				.findViewById(R.id.modo_miseria);
-		modoMiseria.setChecked(tipoPartida.isMiseryGame());
+		modoMiseria.setChecked(tipoPartida.isMiseryMode());
 		return row;
 	}
 }
